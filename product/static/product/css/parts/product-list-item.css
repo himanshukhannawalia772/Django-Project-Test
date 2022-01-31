@@ -1,0 +1,23 @@
+.outer-product{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+.outer-product .inner-product{
+    padding: 10px;
+}
+
+.outer-product:hover .inner-product{
+    box-shadow: 0px 0px 15px 5px rgba(242, 238, 237,1);
+    transform: scale(1.01);
+    transition: .3s all;
+    /* border: 1px solid black; */
+}
+
+.outer-product:active .inner-product{
+    box-shadow: 0px 0px 15px 5px rgba(242, 238, 237,1);
+    transform: scale(1.01);
+    transition: .3s all;
+}

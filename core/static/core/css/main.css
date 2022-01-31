@@ -1,0 +1,18 @@
+#search{
+    display: flex;
+    align-items: center;
+}
+
+.el{
+    display: flex;
+    align-items: center;    
+}
+
+.el a{
+    color: #fff;
+}
+
+.el a:hover{
+    padding: 8px 12px;
+    color: black;
+}

@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Vendor-admin{% endblock title %}
+{% block content %}
+<div class="box">
+    <h3>vendor-admin:</h3>{{vendor.name}}
+    <a href="{% url 'logout' %}" class="button is-small is-danger is-uppercase">Log out</a>
+</div>
+
+<div class="box">
+    <h2 class="is-size-3 mb-4">My Products</h2>
+    <a class="button is-small mb-5 is-dark" href="{% url 'add-product' %}">Add Product</a>
+    {% if products %}
+    <table class="table is-fullwidth">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{product.title}}</td>
+                <td>{{product.price}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>You don't have any prodcts</p>
+    {% endif %}
+</div>
+{% endblock content %}

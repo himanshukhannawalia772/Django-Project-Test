@@ -1,0 +1,130 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Product-View{% endblock title %}
+stylesheet
+{% block content %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'product/css/parts/product-detail.css' %}">
+{% endblock stylesheet %}
+
+<section class="section">
+    <div class="product-contain">
+        <div class="img">
+            <div class="list-of-imgs">
+
+                <!-- Main-Img -->
+
+                {% if product.image %}
+                <figure class="image is-48x48 my-2">
+                    <img src="{{ product.image.url }}">
+                </figure>
+                {% endif %}
+
+                <!-- Image-1 -->
+
+                {% if product.image_1 %}
+                <figure class="image is-48x48 my-2">
+                    <img src="{{ product.image_1.url }}">
+                </figure>
+                {% else %}
+                <figure class="image is-48x48 my-2">
+                    <img src="https://bulma.io/images/placeholders/256x256.png">
+                </figure>
+                {% endif %}
+
+                <!-- Image-2 -->
+
+                {% if product.image_2 %}
+                <figure class="image is-48x48 my-2">
+                    <img src="{{ product.image_2.url }}">
+                </figure>
+                {% else %}
+                <figure class="image is-48x48 my-2">
+                    <img src="https://bulma.io/images/placeholders/256x256.png">
+                </figure>
+                {% endif %}
+
+                <!-- Image-3 -->
+
+                {% if product.image_3 %}
+                <figure class="image is-48x48 my-2">
+                    <img src="{{ product.image_3.url }}">
+                </figure>
+                {% else %}
+                <figure class="image is-48x48 my-2">
+                    <img src="https://bulma.io/images/placeholders/256x256.png">
+                </figure>
+                {% endif %}
+
+                <!-- Image-4 -->
+
+                {% if product.image_4 %}
+                <figure class="image is-48x48 my-2">
+                    <img src="{{ product.image_4.url }}">
+                </figure>
+                {% else %}
+                <figure class="image is-48x48 my-2">
+                    <img src="https://bulma.io/images/placeholders/256x256.png">
+                </figure>
+                {% endif %}
+            </div>
+            <div id="product-image">
+                {% if product.image %}
+                <figure class="image mb-6">
+                    <img id="main-img" src="{{ product.image.url }}">
+                </figure>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="content-part">
+        <h1 class="title">{{product.title|upper}}</h1>
+        <h1 class="subtitle">{{product.category.title|title}}</h1>
+        <div class="pricing">
+            <div class="title">${{product.price}}</div>
+            <strike>1299</strike>
+            <span class="off-price">25% off</span>
+        </div>
+        
+        <h1 class="subtitle">{{product.vendor.name|title}}</h1>
+        <form id="add-to-cart" method="POST" action=".">
+            {% csrf_token %}
+            <div class="field has-addons">
+                <div class="control">
+                    <input type="number" name="quantity" value="1" class="input" min="1">
+                </div>
+                <div class="control">
+                    <button class="button is-uppercase is-dark is-small">Add to cart</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Product Detail Part -->
+
+    <div class="product-details">
+        <div class="description">
+            <h1>Description</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque blanditiis possimus, rem tempore facere
+                nobis est ex illo a corrupti nemo ea aut voluptate perferendis? Quo dolores est quibusdam fuga.</p>
+        </div>
+    </div>
+
+
+    {% if similar_products %}
+    <hr>
+    <div class="columns is-multiline">
+        <div class="column is-12">
+            <h2 class="subtitle">Similar Products</h2>
+        </div>
+        {% for product in similar_products %}
+        {% include 'product/parts/product-list-item.html' %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'product/js/product-view.js' %}"></script>
+{% endblock scripts %}
